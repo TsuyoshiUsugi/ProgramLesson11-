@@ -17,7 +17,7 @@ namespace GameScene
 
         public void UseSkill()
         {
-            Observable.Interval(System.TimeSpan.FromSeconds(_instantiateSec)).Subscribe(_ => GenerateWhip());
+            Observable.Interval(System.TimeSpan.FromSeconds(_instantiateSec)).Subscribe(_ => GenerateWhip()).AddTo(this);
         }
 
         private void GenerateWhip()

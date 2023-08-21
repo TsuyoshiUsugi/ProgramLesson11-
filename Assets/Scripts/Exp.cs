@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Exp : MonoBehaviour
+namespace GameScene
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Exp : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        float _exp = 10;
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.TryGetComponent<Player>(out var player))
+            {
+                player.AddExp(_exp);
+                Destroy(gameObject);
+            }
+        }
     }
 }

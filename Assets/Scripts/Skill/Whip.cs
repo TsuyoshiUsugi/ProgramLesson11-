@@ -10,7 +10,7 @@ namespace GameScene
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent(out NormalEnemy enemy))
+            if (collision.gameObject.TryGetComponent(out Enemy enemy))
             {
                 enemy.Hit(_damage);
             }

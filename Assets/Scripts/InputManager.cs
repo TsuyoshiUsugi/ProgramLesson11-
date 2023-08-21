@@ -18,6 +18,7 @@ namespace GameScene
         {
             var h = Input.GetAxisRaw("Horizontal");
             var v = Input.GetAxisRaw("Vertical");
+            if (_player == null) return;
             _player.Move(h, v);
         }
     }

@@ -8,6 +8,8 @@ namespace GameScene
     {
         [SerializeField] int _hp = 10;
         [SerializeField] float _speed = 1;
+        [SerializeField] float _aquiredExp = 0;
+        [SerializeReference] MonoBehaviour _skill;
 
         public void Move(float horizontal, float vertical)
         {
@@ -31,7 +33,12 @@ namespace GameScene
 
         private void Death()
         {
-            this.gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        public void AddExp(float exp)
+        {
+            _aquiredExp += exp;
         }
     }
 }

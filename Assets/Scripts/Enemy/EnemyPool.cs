@@ -1,22 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UniRx.Toolkit;
 
 namespace GameScene
 {
-    public class EnemyPool : ObjectPool<NormalEnemy>
+    public class EnemyPool : ObjectPool<Enemy>
     {
-        private readonly NormalEnemy _enemyPrefab;
+        private readonly Enemy _enemyPrefab;
         private readonly Transform _parentTransform;
 
-        public EnemyPool(NormalEnemy enemy, Transform transform)
+        public EnemyPool(Enemy enemy, Transform transform)
         {
             _enemyPrefab = enemy;
             _parentTransform = transform;
         }
 
-        protected override NormalEnemy CreateInstance()
+        protected override Enemy CreateInstance()
         {
             var enemy = GameObject.Instantiate(_enemyPrefab);
             enemy.transform.SetParent(_parentTransform);

@@ -11,9 +11,11 @@ namespace GameScene
 
         private void Start()
         {
-            this.UpdateAsObservable().Subscribe(_ => _camera.transform.position =
-                new Vector3(_player.transform.position.x, _player.transform.position.y, _camera.transform.position.z));
-            
+            this.UpdateAsObservable().Subscribe(_ => {
+                if (!_player) return;
+                _camera.transform.position =
+                    new Vector3(_player.transform.position.x, _player.transform.position.y, _camera.transform.position.z);
+                }).AddTo(_player);
         }
     }
 
