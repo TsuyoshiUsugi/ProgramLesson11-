@@ -9,6 +9,16 @@ namespace GameScene
         [SerializeField] GameObject _target;
         [SerializeField] int _damage = 1;
         [SerializeField] float _speed = 1;
+        [SerializeField] float _hp = 1;
+
+        public void Hit(int damage)
+        {
+            _hp -= damage;
+            if (_hp <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Update()
         {
@@ -17,12 +27,12 @@ namespace GameScene
 
         private void Move()
         {
-            transform.position += (_target.transform.position - transform.position).normalized;
+            transform.position += (_target.transform.position - transform.position).normalized * Time.deltaTime;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (other.gameObject.TryGetComponent<Player>(out var player))
+            if (collision.gameObject.TryGetComponent<Player>(out var player))
             {
                 player.Hit(_damage);
             }
