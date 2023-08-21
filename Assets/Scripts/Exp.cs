@@ -6,7 +6,7 @@ namespace GameScene
 {
     public class Exp : MonoBehaviour
     {
-        float _exp = 10;
+        [SerializeField] float _exp = 10;
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent<Player>(out var player))

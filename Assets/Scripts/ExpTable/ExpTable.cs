@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class ExpTable : MonoBehaviour
+[CreateAssetMenu(fileName = "ExpData")]
+public class ExpTable : ScriptableObject
 {
     public List<int> _levelUpTable = new();
 }

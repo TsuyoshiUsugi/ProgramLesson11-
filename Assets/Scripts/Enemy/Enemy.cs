@@ -1,12 +1,11 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
 
 namespace GameScene
 {
-    public class Enemy : MonoBehaviour
+    public class Enemy : MonoBehaviour, Iposable
     {
         [SerializeField] Player _player;
         [SerializeField] int _damage = 1;
@@ -34,6 +33,7 @@ namespace GameScene
         private void Death()
         {
             Instantiate(_expObj, transform.position, Quaternion.identity);
+            FindObjectOfType<PoseManager>().RemovePosableObj(this);
             _onDeath.OnNext(Unit.Default);
         }
 
@@ -49,6 +49,26 @@ namespace GameScene
             {
                 player.Hit(_damage);
             }
+        }
+
+        public void Pose()
+        {
+            this.enabled = false;
+        }
+
+        public void UnPose()
+        {
+            this.enabled = true;
+        }
+
+        public void Set()
+        {
+            FindObjectOfType<PoseManager>().SetPosableObj(this);
+        }
+
+        private void OnDestroy()
+        {
+           
         }
     } 
 }
