@@ -283,9 +283,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _UI: {fileID: 1149619106}
   _items:
+  - {fileID: -3665243746091851216, guid: ea976092d42f21d408632c1d8100f843, type: 3}
   - {fileID: -813407215830771113, guid: a08594542c99e984aa19b2551de09125, type: 3}
   - {fileID: 5071116488922058381, guid: 8830dd075c4cb4a4c970632747ac4d3d, type: 3}
-  - {fileID: -3665243746091851216, guid: ea976092d42f21d408632c1d8100f843, type: 3}
   _one: {fileID: 1772183371}
   _two: {fileID: 1675689791}
   _three: {fileID: 1242009019}
@@ -407,7 +407,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u30A2\u30A4\u30C6\u30E0\uFF13"
 --- !u!222 &422355365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u30A2\u30A4\u30C6\u30E0\uFF12"
 --- !u!222 &524120917
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1149619107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\u30A2\u30A4\u30C6\u30E0\uFF11"
 --- !u!222 &1993046114
 CanvasRenderer:
   m_ObjectHideFlags: 0
