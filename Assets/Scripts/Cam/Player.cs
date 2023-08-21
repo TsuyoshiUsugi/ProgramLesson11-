@@ -10,6 +10,10 @@ namespace GameScene
         [SerializeField] float _speed = 1;
         [SerializeField] float _aquiredExp = 0;
         [SerializeReference] MonoBehaviour _skill;
+        [SerializeField] ExpTable _expTable;
+        [SerializeField] GameObject _levelUpUI;
+        [SerializeField] List<Item> _items = new();
+        int _currentLevel = 1;
 
         public void Move(float horizontal, float vertical)
         {
@@ -39,6 +43,24 @@ namespace GameScene
         public void AddExp(float exp)
         {
             _aquiredExp += exp;
+
+            if (_expTable._levelUpTable.Count < _currentLevel) return;
+            if (_expTable._levelUpTable[_currentLevel - 1] <= _aquiredExp)
+            {
+                LevelUp();
+                _currentLevel++;
+            }
+        }
+
+        private void LevelUp()
+        {
+            FindObjectOfType<PoseManager>().Pose();
+            _levelUpUI.SetActive(true);
+        }
+
+        public void GetItem(Item item)
+        {
+            _items.Add(item);
         }
     }
 }

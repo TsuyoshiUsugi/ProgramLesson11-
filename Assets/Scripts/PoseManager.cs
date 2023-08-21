@@ -27,12 +27,21 @@ public class PoseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0;
+            Pose();
         }
         
         if (Input.GetKeyDown(KeyCode.Y))
         {
-            Time.timeScale = 1;
+            UnPose();
         }
+    }
+    public void Pose()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void UnPose()
+    {
+        Time.timeScale = 1;
     }
 }
