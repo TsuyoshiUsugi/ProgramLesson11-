@@ -5,18 +5,18 @@ using UniRx.Toolkit;
 
 namespace GameScene
 {
-    public class EnemyPool : ObjectPool<Enemy>
+    public class EnemyPool : ObjectPool<NormalEnemy>
     {
-        private readonly Enemy _enemyPrefab;
+        private readonly NormalEnemy _enemyPrefab;
         private readonly Transform _parentTransform;
 
-        public EnemyPool(Enemy enemy, Transform transform)
+        public EnemyPool(NormalEnemy enemy, Transform transform)
         {
             _enemyPrefab = enemy;
             _parentTransform = transform;
         }
 
-        protected override Enemy CreateInstance()
+        protected override NormalEnemy CreateInstance()
         {
             var enemy = GameObject.Instantiate(_enemyPrefab);
             enemy.transform.SetParent(_parentTransform);
