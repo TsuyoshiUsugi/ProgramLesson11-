@@ -140,4 +140,4 @@ MonoBehaviour:
   _damage: 3
   _speed: 2
   _hp: 20
-  _expObj: {fileID: 8525613731881551299, guid: 2cac66d3b153db340a6ec9a6245cf152, type: 3}
+  _expObj: {fileID: 8525613731881551299, guid: 3b1958bfa4927414f85625213c3fd081, type: 3}
