@@ -6,10 +6,10 @@ namespace GameScene
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] int _hp = 10;
+        [SerializeField] float _hp = 10;
         [SerializeField] float _speed = 1;
         [SerializeField] float _aquiredExp = 0;
-        [SerializeReference] MonoBehaviour _skill;
+        [SerializeField] List<GameObject> _skills;
         [SerializeField] ExpTable _expTable;
         [SerializeField] GameObject _levelUpUI;
         [SerializeField] List<Item> _items = new();
@@ -29,7 +29,7 @@ namespace GameScene
                     new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
 
-        public void Hit(int damage)
+        public void Hit(float damage)
         {
             _hp -= damage;
             if (_hp <= 0) Death();

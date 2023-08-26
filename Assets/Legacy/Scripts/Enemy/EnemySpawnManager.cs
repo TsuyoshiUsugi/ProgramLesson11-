@@ -4,40 +4,28 @@ using UniRx;
 using UniRx.Triggers;
 using System.Collections;
 using System;
+using TsuyoshiLibrary;
 
 namespace GameScene
 {
     /// <summary>
     /// 敵の生成を管理する
     /// </summary>
-    public class EnemySpawnManager : MonoBehaviour
+    public class EnemySpawnManager : SingletonMonobehavior<MonoBehaviour>
     {
-        [SerializeField] Player _player;
-        [SerializeField] Enemy _enemy;
-        [SerializeField] Enemy _strongEnemy;
+        [SerializeField] GameObject _player;
+        [SerializeField] EnemyModel _enemy;
         [SerializeField] List<GameObject> _spawnPointList;
-        [SerializeField] Camera _camera;
         Vector3 _offset;
         EnemyPool _enemyPool;
         IDisposable _currentRoutine;
+        [SerializeField] Queue<string> a;
 
-        private void Start()
+        public void Start()
         {
             SetField();
-            this.UpdateAsObservable().Subscribe(_ => AdjustEnemeySpawnPointToPlayer());
-            _enemyPool = new EnemyPool(_enemy, _camera.transform);
-            _currentRoutine = Observable.Interval(System.TimeSpan.FromSeconds(0.5f)).Subscribe(_ => InstantiateEnemy(GetInstantiatePos()));
-            StartCoroutine(EnemyLevelUp());
-        }
-
-        private IEnumerator EnemyLevelUp()
-        {
-            yield return new WaitForSeconds(10);
-            _currentRoutine.Dispose();
-            _enemyPool.Clear();
-            _enemyPool.Dispose();
-            _enemyPool = new EnemyPool(_strongEnemy, _camera.transform);
-            Debug.Log("10秒経過");
+            this.UpdateAsObservable().Subscribe(_ => AdjustSpawnPos());
+            _enemyPool = new EnemyPool(_enemy);
             _currentRoutine = Observable.Interval(System.TimeSpan.FromSeconds(0.5f)).Subscribe(_ => InstantiateEnemy(GetInstantiatePos()));
         }
 
@@ -47,7 +35,6 @@ namespace GameScene
             enemy.transform.parent = null;
             enemy.InitializeEnemy(_player);
             enemy.transform.position = instantitatePos;
-            enemy.OnDeath.Subscribe(_ => _enemyPool.Return(enemy));
         }
 
         private Vector3 GetInstantiatePos()
@@ -61,10 +48,17 @@ namespace GameScene
             _offset = transform.position - _player.transform.position;
         }
 
-        private void AdjustEnemeySpawnPointToPlayer()
+        /// <summary>
+        /// スポーンポイントをプレイヤーの位置に合わせて動かす
+        /// </summary>
+        private void AdjustSpawnPos()
         {
             if (_player == null) return;
             transform.position = _player.transform.position + _offset;
+        }
+
+        protected override void OnAwake()
+        {
         }
     }
 }
